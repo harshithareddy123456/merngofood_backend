@@ -8,17 +8,18 @@ mongoDB();
 // CORS middleware
 app.use(
   cors({
-    origin: "https://merngofood-frontend-1.onrender.com/",
-    method: ["POST", "GET"],
-    credentials: true,
+    origin: "https://merngofood-backend-1.onrender.com",
+    methods: ["POST", "GET"], // Note: Use 'methods' instead of 'method'
+    credentials: false,
   })
 );
+
 app.use(cors());
 app.use((req, res, next) => {
-  //res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "https://merngofood-frontend-1.onrender.com/"
+    "https://merngofood-backend-1.onrender.com"
   );
   res.setHeader(
     "Access-Control-Allow-Headers",
