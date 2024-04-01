@@ -1,0 +1,20 @@
+{
+  "name": "my-nextjs-project",
+  "version": 2,
+  "builds": [
+    {
+      "src": "next.config.js",
+      "use": "@vercel/static-build",
+      "config": {}
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "env": {
+    "MY_CUSTOM_ENV_VAR": "value"
+  }
+}
