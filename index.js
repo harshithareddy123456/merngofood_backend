@@ -17,6 +17,10 @@ app.use(cors());
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://merngofood-backend-1.onrender.com"
+  );
+  res.setHeader(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
