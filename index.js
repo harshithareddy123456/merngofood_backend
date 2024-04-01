@@ -6,11 +6,13 @@ const mongoDB = require("./db");
 mongoDB();
 
 // CORS middleware
-// app.use(cors(
-//   {
-
-//   }
-// ))
+app.use(
+  cors({
+    origin: "https://merngofood-backend-1.onrender.com",
+    method: ["POST", "GET"],
+    credentials: true,
+  })
+);
 app.use(cors());
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
