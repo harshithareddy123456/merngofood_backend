@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
 
+const username = process.env.USER_NAME;
+const password = process.env.PASSWORD;
 const mongoURI =
-  "mongodb+srv://vsharshi233:S3B3LylnRJ5xJYwD@gofood.nl6vcjl.mongodb.net/gofooddb?retryWrites=true&w=majority";
+  "mongodb+srv://username:password@gofood.nl6vcjl.mongodb.net/gofooddb?retryWrites=true&w=majority";
 
 const mongoDB = async () => {
   try {
