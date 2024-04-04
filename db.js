@@ -3,8 +3,7 @@ require("dotenv").config();
 
 const username = process.env.USER_NAME;
 const password = process.env.PASSWORD;
-const mongoURI =
-  "mongodb+srv://username:password@gofood.nl6vcjl.mongodb.net/gofooddb?retryWrites=true&w=majority";
+const mongoURI = process.env.MONGO_URI;
 
 const mongoDB = async () => {
   try {
