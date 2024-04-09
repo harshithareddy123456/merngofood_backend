@@ -8,9 +8,9 @@ mongoDB();
 // CORS middleware
 app.use(
   cors({
-    origin: ["https://merngofood-frontend.vercel.app/"],
+    origin: ["https://merngofood-frontend.vercel.app"],
     methods: ["POST", "GET"], // Note: Use 'methods' instead of 'method'
-    credentials: false,
+    credentials: true,
   })
 );
 
