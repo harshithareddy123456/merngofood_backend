@@ -9,7 +9,7 @@ mongoDB();
 app.use(
   cors({
     origin: [
-      "http://localhost:3000",
+      "https://gofoodbackend-three.vercel.app/",
       "https://merngofood-frontend-1.onrender.com",
     ],
     methods: ["POST", "GET"], // Note: Use 'methods' instead of 'method'
