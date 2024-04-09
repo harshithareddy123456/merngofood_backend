@@ -9,6 +9,7 @@ const jwtSecret = "qwertyuioo";
 
 router.post(
   "/createuser",
+  cors({ origin: "https://merngofood-frontend.vercel.app/" }),
   [
     body("email").isEmail(),
     body("name").isLength({ min: 5 }),
@@ -40,38 +41,43 @@ router.post(
   }
 );
 
-router.post("/loginuser", [body("email").isEmail()], async (req, res) => {
-  try {
-    const result = validationResult(req);
-    if (!result.isEmpty()) {
-      return res.status(400).json({ errors: result.array() });
+router.post(
+  "/loginuser",
+  cors({ origin: "https://merngofood-frontend.vercel.app/" }),
+  [body("email").isEmail()],
+  async (req, res) => {
+    try {
+      const result = validationResult(req);
+      if (!result.isEmpty()) {
+        return res.status(400).json({ errors: result.array() });
+      }
+      const { email, password } = req.body;
+      let userData = await User.findOne({ email });
+      if (!userData) {
+        return res
+          .status(400)
+          .json({ errors: "Try logging in with correct credentials" });
+      }
+      const pwdCompare = await bcrypt.compare(
+        req.body.password,
+        userData.password
+      );
+      if (!pwdCompare) {
+        return res
+          .status(400)
+          .json({ errors: "Try logging in with correct credentials" });
+      }
+      const data = {
+        user: {
+          id: userData.id,
+        },
+      };
+      const authToken = jwt.sign(data, jwtSecret);
+      return res.json({ success: true, authToken: authToken });
+    } catch (error) {
+      console.log("error");
+      res.json({ success: false });
     }
-    const { email, password } = req.body;
-    let userData = await User.findOne({ email });
-    if (!userData) {
-      return res
-        .status(400)
-        .json({ errors: "Try logging in with correct credentials" });
-    }
-    const pwdCompare = await bcrypt.compare(
-      req.body.password,
-      userData.password
-    );
-    if (!pwdCompare) {
-      return res
-        .status(400)
-        .json({ errors: "Try logging in with correct credentials" });
-    }
-    const data = {
-      user: {
-        id: userData.id,
-      },
-    };
-    const authToken = jwt.sign(data, jwtSecret);
-    return res.json({ success: true, authToken: authToken });
-  } catch (error) {
-    console.log("error");
-    res.json({ success: false });
   }
-});
+);
 module.exports = router;
