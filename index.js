@@ -21,9 +21,18 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.use("/api", require("./Routes/CreateUser"));
-app.use("/api", require("./Routes/DisplayData"));
-app.use("/api", require("./Routes/Orderdata"));
+app.get("/foodData", (req, res) => {
+  try {
+    res.send([global.foodItems, global.foodCategories]);
+  } catch (error) {
+    console.error(error.messege);
+    res.send("Server error");
+  }
+});
+
+// app.use("/api", require("./Routes/CreateUser"));
+// app.use("/api", require("./Routes/DisplayData"));
+// app.use("/api", require("./Routes/Orderdata"));
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
