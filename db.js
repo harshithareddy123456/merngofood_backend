@@ -8,10 +8,13 @@ const mongoURI =
 
 const mongoDB = async () => {
   try {
-    await mongoose.connect(mongoURI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(
+      "mongodb+srv://vsharshi233:S3B3LylnRJ5xJYwD@gofood.nl6vcjl.mongodb.net/gofooddb?retryWrites=true&w=majority",
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      }
+    );
     console.log("MongoDB connected successfully");
 
     const FoodItem = mongoose.model(

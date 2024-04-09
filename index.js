@@ -23,6 +23,7 @@ app.get("/", (req, res) => {
 
 app.get("/foodData", (req, res) => {
   try {
+    console.log(res);
     res.send([global.foodItems, global.foodCategories]);
   } catch (error) {
     console.error(error.messege);
