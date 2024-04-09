@@ -8,7 +8,7 @@ mongoDB();
 // CORS middleware
 app.use(
   cors({
-    origin: ["https://merngofood-frontend.vercel.app"],
+    origin: ["https://merngofood-frontend-1.onrender.com"],
     methods: ["POST", "GET"], // Note: Use 'methods' instead of 'method'
     credentials: true,
   })
@@ -21,19 +21,9 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.get("/foodData", (req, res) => {
-  try {
-    console.log(res);
-    res.send([global.foodItems, global.foodCategories]);
-  } catch (error) {
-    console.error(error.messege);
-    res.send("Server error");
-  }
-});
-
-// app.use("/api", require("./Routes/CreateUser"));
-// app.use("/api", require("./Routes/DisplayData"));
-// app.use("/api", require("./Routes/Orderdata"));
+app.use("/api", require("./Routes/CreateUser"));
+app.use("/api", require("./Routes/DisplayData"));
+app.use("/api", require("./Routes/Orderdata"));
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
