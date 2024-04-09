@@ -21,9 +21,10 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.use("/api", require("./Routes/CreateUser"));
-app.use("/api", require("./Routes/DisplayData"));
-app.use("/api", require("./Routes/Orderdata"));
+app.use(require("./Routes/CreateUser"));
+app.use(require("./Routes/DisplayData"));
+app.use(require("./Routes/Orderdata"));
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
